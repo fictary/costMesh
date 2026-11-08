@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
+<html lang="zh-Hant"><head><script src="chrome-extension://mfidniedemcgceagapgdekdbmanojomk/js/elephant.js"></script><script src="chrome-extension://mfidniedemcgceagapgdekdbmanojomk/js/elephant.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>差旅紀錄</title>
+<title>costMesh</title>
 <style>
 :root{--indent:24px;--bg:#fff;--ink:#1f2937;--mute:#6b7280;--line:#eceef2;--line2:#d1d5db;--acc:#2f7cf6;--steel:#5b82ad;--sage:#5f9a76;--ochre:#b8953a;--coral:#c8676a;--plum:#8a74a8;--teal:#4f9a9a;--navy:#3d5a80;--forest:#3f6e52;--umber:#7d6236;--wine:#8f4a55;--indigo:#55598f;--slate:#5b6672;--olive:#6b7536;--rust:#9a5a3c;--sumbg:#6f7680;--sumfg:#fff;--shadow:0 8px 30px rgba(15,23,42,.16);color-scheme:light;
 --tint:color-mix(in srgb,var(--acc) 3.5%,var(--bg));--act:color-mix(in srgb,var(--acc) 9%,var(--bg));
@@ -509,33 +508,16 @@ header.top .tab[aria-selected=true]{border-color:var(--line2);background:var(--b
 .ghg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px}
 .ghol{margin:6px 0;padding-left:20px;line-height:1.6}
 @media (max-width:640px){.ghg{grid-template-columns:minmax(0,1fr)}}
-/* ---- S ---- */
-.lkhint{position:fixed;top:58px;right:16px;z-index:60;max-width:min(360px,calc(100vw - 32px));padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:color-mix(in srgb,var(--acc) 6%,var(--bg));color:var(--mute);font:inherit;font-size:13px;text-align:left;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.06);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .25s,transform .25s}
-.lkhint.on{opacity:1;transform:none;pointer-events:auto}
-.lkhint u{color:var(--acc);text-underline-offset:2px}
-.lkhint:hover{border-color:color-mix(in srgb,var(--acc) 40%,var(--line))}
-#trayB{position:relative}#trayB.on{color:var(--acc);border-color:color-mix(in srgb,var(--acc) 45%,var(--line));background:color-mix(in srgb,var(--acc) 9%,transparent)}
-#trayB .trn{position:absolute;top:-4px;right:-5px;min-width:15px;height:15px;padding:0 3px;box-sizing:border-box;border-radius:8px;font-size:10px;line-height:15px;text-align:center;color:var(--mute);border:1px solid var(--line);background:var(--bg)}
-.tbtray{flex-basis:100%;width:100%;margin:4px 0 2px;padding:6px 8px;border:1px dashed var(--line2,var(--line));border-radius:8px;background:color-mix(in srgb,var(--acc) 3.5%,var(--bg));box-sizing:border-box}
-.tbtray.drop{border-style:solid;border-color:var(--acc)}
-.tbtray .trh{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px}.tbtray .trh .sp{flex:1}
-.tbtray .tri{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:34px}
-.tbtray .tri [data-oi]{cursor:grab}
-.tbtray.pick .tri [data-oi]{cursor:pointer;opacity:.55}
-.tbtray.pick .tri [data-oi].pin{opacity:1;border-color:color-mix(in srgb,var(--acc) 45%,var(--line))}
-.tbtray.pick .tri [data-oi].pin::after{content:'📌';font-size:10px;margin-left:2px}
-#tbar [draggable=true].odg{opacity:.4}
-@media (max-width:640px){.lkhint{top:auto;bottom:16px;right:16px;left:16px;max-width:none}.tbtray .trh>.mute{flex-basis:100%}}
 @media print{.toolbar,.hint,aside.side,.tabs,header.top .btn,.batch{display:none!important}}
 </style>
 </head>
 <body>
 <div class="shell">
 <aside class="side" id="side">
-<div class="sideT"><button class="ib pinb" id="pinB" aria-pressed="true" aria-label="釘選出差清單" data-tip="釘選清單"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3.5h6l-1 5.5 3.2 3.2V14H6.8v-1.8L10 9z"/><path d="M12 14v6.5"/></svg></button><svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 8V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3"/><path d="M3 13h18"/></svg><h1 id="ttl">差旅紀錄</h1><button class="ib" id="info" data-tip="">ⓘ</button><button class="ib" id="keysB" data-tip="快捷鍵與操作說明" aria-label="快捷鍵說明">⌨</button></div>
+<div class="sideT"><button class="ib pinb" id="pinB" aria-pressed="true" aria-label="釘選出差清單" data-tip="釘選清單"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3.5h6l-1 5.5 3.2 3.2V14H6.8v-1.8L10 9z"></path><path d="M12 14v6.5"></path></svg></button><svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M8 8V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3"></path><path d="M3 13h18"></path></svg><h1 id="ttl">差旅紀錄</h1><button class="ib" id="info" data-tip="">ⓘ</button><button class="ib" id="keysB" data-tip="快捷鍵與操作說明" aria-label="快捷鍵說明">⌨</button></div>
 <section class="blk" data-blk="today" id="todayB"></section>
 <section class="blk sideL" data-blk="tl">
-<div class="side-h"><button class="tg" data-bkt="tl" aria-expanded="true" aria-label="收合／展開">▸</button><b data-lk="blk.tl" data-ld="EVENT">EVENT</b><span class="sp"></span><button class="btn ghost ibtn" id="addTrip" aria-label="新增出差" data-tip="新增出差：新增後直接在清單裡輸入名稱（Enter 確定、Esc 取消）。之後雙擊名稱或按 F2 可再改名"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4M12 12.5v5M9.5 15h5"/></svg></button><button class="btn ghost ibtn" id="addFolder" aria-label="新增資料夾" data-tip="新增資料夾（專案）：新增後直接輸入名稱；把出差拖到資料夾上即可放入"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5v11a1.5 1.5 0 0 0 1.5 1.5h15a1.5 1.5 0 0 0 1.5-1.5V9a1.5 1.5 0 0 0-1.5-1.5H11L9 5H4.5A1.5 1.5 0 0 0 3 6.5z"/><path d="M12 10.5v6M9 13.5h6"/></svg></button><button class="btn ghost drawerb" data-act="drawer" aria-label="關閉清單">✕</button></div>
+<div class="side-h"><button class="tg" data-bkt="tl" aria-expanded="true" aria-label="收合／展開">▸</button><b data-lk="blk.tl" data-ld="EVENT">EVENT</b><span class="sp"></span><button class="btn ghost ibtn" id="addTrip" aria-label="新增出差" data-tip="新增出差：新增後直接在清單裡輸入名稱（Enter 確定、Esc 取消）。之後雙擊名稱或按 F2 可再改名"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"></rect><path d="M3.5 9.5h17M8 3v4M16 3v4M12 12.5v5M9.5 15h5"></path></svg></button><button class="btn ghost ibtn" id="addFolder" aria-label="新增資料夾" data-tip="新增資料夾（專案）：新增後直接輸入名稱；把出差拖到資料夾上即可放入"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5v11a1.5 1.5 0 0 0 1.5 1.5h15a1.5 1.5 0 0 0 1.5-1.5V9a1.5 1.5 0 0 0-1.5-1.5H11L9 5H4.5A1.5 1.5 0 0 0 3 6.5z"></path><path d="M12 10.5v6M9 13.5h6"></path></svg></button><button class="btn ghost drawerb" data-act="drawer" aria-label="關閉清單">✕</button></div>
 <div id="tlist" class="tlist" tabindex="0"></div>
 <div id="tsum" class="side-f"></div>
 </section>
@@ -559,18 +541,18 @@ header.top .tab[aria-selected=true]{border-color:var(--line2);background:var(--b
 <div id="tripbar" class="tripbar" data-blk="tdet"></div>
 <div id="tbar" class="toolbar"></div>
 <div id="gwrap" class="gwrap" tabindex="0"><table id="grid"></table></div>
-<div id="fview" hidden></div>
-<div id="empty" class="empty-s" hidden></div>
-<div id="batch" class="batch" hidden></div>
+<div id="fview" hidden=""></div>
+<div id="empty" class="empty-s" hidden=""></div>
+<div id="batch" class="batch" hidden=""></div>
 </main>
 </div>
-<div id="v-sum" class="sumv" hidden></div><div id="v-set" hidden></div>
+<div id="v-sum" class="sumv" hidden=""></div><div id="v-set" hidden=""></div>
 </div>
 </div>
 <div id="hint" class="hint"><span class="d">中鍵 確認 ・ 右鍵 回覆 ・ Tab 縮排 ・ Shift+Tab 升階 ・ Ctrl／Shift 多選 ・ Alt+Q 收合／展開區塊 ・ Ctrl+S 存檔 ・ 按住 ⋮⋮ 拖曳 ・ Ctrl+拖曳 調整按鈕／篩選／區塊順序 ・ 雙擊標題／雙擊右鍵／Ctrl+右鍵 改名 ・ Alt+點小行事曆 設定日期 ・ 拖曳左欄右緣 調整寬度 ・ Alt+Shift+→／← 欄群組</span><span class="m">長按 回覆 ・ 雙擊 確認 ・ ☰ 出差清單</span></div>
-<div id="tip" class="tip" hidden></div>
-<div id="toast" class="toast" hidden></div>
-<script type="application/json" id="tx-seed">{"v":1,"appId":"tx0","updatedAt":1794063574915,"settings":{"title":"COST RECORD","desc":"團隊出差的支出與報支紀錄（範例資料，可直接修改或刪除）。","base":"TWD","currencies":[{"code":"TWD","rate":1},{"code":"USD","rate":32},{"code":"JPY","rate":0.21},{"code":"CNY","rate":4.4},{"code":"EUR","rate":35}],"categories":[{"id":"mw65dm9g1rziu","name":"交通","c":"steel"},{"id":"mw65dm9g2f5dv","name":"住宿","c":"plum"},{"id":"mw65dm9g3xbf3","name":"餐費","c":"ochre"},{"id":"mw65dm9g4rhke","name":"雜支","c":"teal"},{"id":"mw65dm9g5dmd4","name":"其他","c":"sage"}],"members":[{"id":"mw65dm9g6vscl","name":"Brice","c":"steel"},{"id":"mw65dm9g74rwp","name":"Ivan","c":"sage"},{"id":"mw65dm9g82dsi","name":"Conor","c":"ochre"},{"id":"mw65dm9g9tptf","name":"Janny","c":"plum"},{"id":"mw6ih7wp3uq9xl","name":"AIDEN","c":"plum"}],"claimMode":"share","defClaim":2,"pw":null,"ui":{"colGroups":[{"id":"g-d","name":"金額","cols":["amt","unit","reb","qty"],"collapsed":false},{"id":"g-c","name":"換算","cols":["cur","base"],"collapsed":false},{"id":"g-r","name":"報支","cols":["claim","payer"],"collapsed":false},{"id":"g-m","name":"👤","cols":["@m"],"collapsed":false,"lock":true}],"sumState":{"f:mw65dm9gaqpn2":false},"_h1":1,"fx":{"data":{"m":"cat","c":"st"},"sum":{"m":"year","c":"status"}},"lbl":{"blk.tl":"EVENT","col.cat":"CATE","tab.data":"DATA"},"blk":{"tdet":false,"today":false,"tl":false,"gantt":false},"_i1":1,"fxo":{},"sidePin":false,"kpiC":[],"kpiH":{}}},"trips":[{"collapsed":false,"name":"2026 國內","id":"mw65dm9gaqpn2","kind":"folder","depth":0},{"id":"mw65dm9gb82xb","kind":"trip","name":"台中廠 EVT 支援","depth":1,"collapsed":false,"start":"2026-11-11","end":"2026-11-17","place":"","purpose":"EVT","status":"plan","members":["mw65dm9g6vscl","mw65dm9g74rwp","mw65dm9g82dsi","mw65dm9g9tptf","mw6ih7wp3uq9xl"],"perDiem":500,"rates":{},"note":"","rows":[{"id":"mw65dm9gcskzo","depth":0,"collapsed":false,"date":"","cat":"mw65dm9g1rziu","desc":"高鐵 台北 → 台中","unit":700,"reb":null,"qty":3,"cur":"","claim":0,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1,"mw65dm9g82dsi":1,"mw65dm9g9tptf":0,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":true,"sig":"[\"2026-07-06\",\"mw65dm9g1rziu\",\"高鐵 台北 → 台中\",700,null,3,\"\",2,\"mw65dm9g6vscl\",{\"mw65dm9g6vscl\":1,\"mw65dm9g74rwp\":1,\"mw65dm9g82dsi\":1},[],\"\"]"},{"id":"mw65dm9gdu4f8","depth":0,"collapsed":false,"date":"2026-07-06","cat":"mw65dm9g2f5dv","desc":"商旅 2 晚（3 間）","unit":2400,"reb":-600,"qty":6,"cur":"","claim":0,"payer":"mw65dm9g74rwp","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1,"mw65dm9g82dsi":1,"mw65dm9g9tptf":1,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"公司協議價","ok":false,"sig":""},{"id":"mw65dm9ge3otd","depth":0,"collapsed":false,"date":"2026-07-07","cat":"mw65dm9g4rhke","desc":"COSTCO","unit":null,"reb":null,"qty":1,"cur":"","claim":1,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gfzom6","depth":1,"collapsed":false,"date":"","cat":"","desc":"舒潔抽取式衛生紙","unit":419,"reb":-84,"qty":1,"cur":"","claim":1,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":true,"sig":"[\"\",\"\",\"舒潔抽取式衛生紙\",419,-84,1,\"\",2,\"mw65dm9g6vscl\",{\"mw65dm9g6vscl\":1,\"mw65dm9g74rwp\":1},[],\"\"]"},{"id":"mw65dm9ggupr5","depth":1,"collapsed":false,"date":"","cat":"","desc":"樹頂蘋果片","unit":299,"reb":null,"qty":1,"cur":"","claim":1,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":2,"mw65dm9g74rwp":1,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9ghlvmt","depth":1,"collapsed":false,"date":"","cat":"","desc":"綜合堅果","unit":149,"reb":null,"qty":1,"cur":"","claim":1,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":2,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gizsy8","depth":1,"collapsed":false,"date":"","cat":"","desc":"科克蘭牛小排","unit":1285,"reb":-150,"qty":1,"cur":"","claim":1,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gjejmz","depth":1,"collapsed":false,"date":"","cat":"","desc":"洗衣膠囊","unit":589,"reb":-116,"qty":2,"cur":"","claim":1,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gk6cnu","depth":1,"collapsed":false,"date":"","cat":"","desc":"烤雞","unit":299,"reb":null,"qty":1,"cur":"","claim":1,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gl2dn6","depth":1,"collapsed":false,"date":"","cat":"","desc":"咖啡豆","unit":789,"reb":null,"qty":1,"cur":"","claim":1,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":0,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gm8c78","depth":1,"collapsed":false,"date":"","cat":"","desc":"行動電源","unit":2484,"reb":null,"qty":1,"cur":"","claim":1,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":3,"mw65dm9g74rwp":1,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gnqamw","depth":0,"collapsed":false,"date":"2026-07-07","cat":"mw65dm9g3xbf3","desc":"客戶晚餐","unit":3680,"reb":null,"qty":1,"cur":"","claim":2,"payer":"mw65dm9g82dsi","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1,"mw65dm9g82dsi":1,"mw65dm9g9tptf":0,"mw6ih7wp3uq9xl":0},"tags":["客戶"],"remark":"發票 2 張","ok":false,"sig":""},{"id":"mw65dm9gohn8p","depth":0,"collapsed":false,"date":"2026-07-08","cat":"mw65dm9g1rziu","desc":"計程車 台中站","unit":380,"reb":null,"qty":1,"cur":"","claim":1,"payer":"mw65dm9g82dsi","w":{"mw65dm9g6vscl":0,"mw65dm9g74rwp":0,"mw65dm9g82dsi":1,"mw65dm9g9tptf":0,"mw6ih7wp3uq9xl":0},"tags":[],"remark":"","ok":false,"sig":""}],"auto":"wd","wd":7},{"collapsed":false,"name":"2026 美國","id":"mw65dm9gps6zw","kind":"folder","depth":0},{"id":"mw65dm9gq5pqu","kind":"trip","name":"加州 Fremont 驗證","depth":1,"collapsed":false,"start":"2026-08-03","end":"2026-08-09","place":"Fremont, CA","purpose":"客戶驗證","status":"todo","members":["mw65dm9g6vscl","mw65dm9g74rwp"],"perDiem":1200,"rates":{"USD":32.1},"note":"","rows":[{"id":"mw65dm9gr3as4","depth":0,"collapsed":false,"date":"2026-08-03","cat":"mw65dm9g1rziu","desc":"機票 TPE ⇄ SFO","unit":38500,"reb":null,"qty":2,"cur":"","claim":2,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1},"tags":[],"remark":"","ok":true,"sig":"[\"2026-08-03\",\"mw65dm9g1rziu\",\"機票 TPE ⇄ SFO\",38500,null,2,\"\",2,\"mw65dm9g6vscl\",{\"mw65dm9g6vscl\":1,\"mw65dm9g74rwp\":1},[],\"\"]"},{"id":"mw65dm9gsm3s7","depth":0,"collapsed":false,"date":"2026-08-03","cat":"mw65dm9g2f5dv","desc":"Hotel — Fremont","unit":null,"reb":null,"qty":1,"cur":"USD","claim":2,"payer":"mw65dm9g74rwp","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gtvfyp","depth":1,"collapsed":false,"date":"","cat":"","desc":"房費 6 晚","unit":189,"reb":-60,"qty":6,"cur":"USD","claim":2,"payer":"mw65dm9g74rwp","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9guf701","depth":1,"collapsed":false,"date":"","cat":"","desc":"稅金 / 服務費","unit":28.35,"reb":null,"qty":6,"cur":"USD","claim":2,"payer":"mw65dm9g74rwp","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gvwz8k","depth":0,"collapsed":false,"date":"2026-08-04","cat":"mw65dm9g1rziu","desc":"租車 Hertz","unit":412.5,"reb":null,"qty":1,"cur":"USD","claim":2,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gwzl38","depth":0,"collapsed":false,"date":"2026-08-07","cat":"mw65dm9g3xbf3","desc":"團隊晚餐","unit":156.8,"reb":null,"qty":1,"cur":"USD","claim":2,"payer":"mw65dm9g74rwp","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1},"tags":["客戶"],"remark":"","ok":false,"sig":""},{"id":"mw65dm9gxtihe","depth":0,"collapsed":false,"date":"2026-08-10","cat":"mw65dm9g1rziu","desc":"機場停車","unit":1600,"reb":null,"qty":1,"cur":"","claim":2,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1},"tags":[],"remark":"","ok":false,"sig":""}],"auto":"wd","wd":7},{"id":"mw65dm9gyb4mr","kind":"trip","name":"東京 客戶拜訪","depth":0,"collapsed":false,"start":"2026-09-14","end":"2026-09-17","place":"東京","purpose":"客戶拜訪","status":"paid","members":["mw65dm9g6vscl","mw65dm9g9tptf"],"perDiem":0,"rates":{"JPY":0.212},"note":"","rows":[{"id":"mw65dm9gzzf1j","depth":0,"collapsed":false,"date":"2026-09-14","cat":"mw65dm9g1rziu","desc":"機票 TPE ⇄ HND","unit":14800,"reb":null,"qty":2,"cur":"","claim":2,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g9tptf":1},"tags":[],"remark":"","ok":true,"sig":"[\"2026-09-14\",\"mw65dm9g1rziu\",\"機票 TPE ⇄ HND\",14800,null,2,\"\",2,\"mw65dm9g6vscl\",{\"mw65dm9g6vscl\":1,\"mw65dm9g9tptf\":1},[],\"\"]"},{"id":"mw65dm9g108jqz","depth":0,"collapsed":false,"date":"2026-09-14","cat":"mw65dm9g2f5dv","desc":"飯店 3 晚（2 間）","unit":18500,"reb":null,"qty":6,"cur":"JPY","claim":2,"payer":"mw65dm9g9tptf","w":{"mw65dm9g6vscl":1,"mw65dm9g9tptf":1},"tags":[],"remark":"","ok":true,"sig":"[\"2026-09-14\",\"mw65dm9g2f5dv\",\"飯店 3 晚（2 間）\",18500,null,6,\"JPY\",2,\"mw65dm9g9tptf\",{\"mw65dm9g6vscl\":1,\"mw65dm9g9tptf\":1},[],\"\"]"},{"id":"mw65dm9g11h3fx","depth":0,"collapsed":false,"date":"2026-09-14","cat":"mw65dm9g1rziu","desc":"Suica 儲值","unit":5000,"reb":null,"qty":2,"cur":"JPY","claim":2,"payer":"mw65dm9g9tptf","w":{"mw65dm9g6vscl":1,"mw65dm9g9tptf":1},"tags":[],"remark":"","ok":true,"sig":"[\"2026-09-14\",\"mw65dm9g1rziu\",\"Suica 儲值\",3000,null,2,\"JPY\",2,\"mw65dm9g9tptf\",{\"mw65dm9g6vscl\":1,\"mw65dm9g9tptf\":1},[],\"\"]"},{"id":"mw65dm9g12qyq5","depth":0,"collapsed":false,"date":"2026-09-15","cat":"mw65dm9g3xbf3","desc":"午餐","unit":4280,"reb":null,"qty":1,"cur":"JPY","claim":2,"payer":"mw65dm9g6vscl","w":{"mw65dm9g6vscl":1,"mw65dm9g9tptf":1},"tags":[],"remark":"","ok":true,"sig":"[\"2026-09-15\",\"mw65dm9g3xbf3\",\"午餐\",4280,null,1,\"JPY\",2,\"mw65dm9g6vscl\",{\"mw65dm9g6vscl\":1,\"mw65dm9g9tptf\":1},[],\"\"]"}],"auto":"wd","wd":4}]}</script>
+<div id="tip" class="tip" hidden=""></div>
+<div id="toast" class="toast" hidden=""></div>
+<script type="application/json" id="tx-seed">{"v":1,"appId":"tx0","updatedAt":1794118720152,"settings":{"title":"costMesh","desc":"團隊出差的支出與報支紀錄（範例資料，可直接修改或刪除）。","base":"TWD","currencies":[{"code":"TWD","rate":1},{"code":"USD","rate":32},{"code":"JPY","rate":0.21},{"code":"CNY","rate":4.4},{"code":"EUR","rate":35}],"categories":[{"id":"mw65dm9g1rziu","name":"交通","c":"steel"},{"id":"mw65dm9g2f5dv","name":"住宿","c":"plum"},{"id":"mw65dm9g3xbf3","name":"餐費","c":"ochre"},{"id":"mw65dm9g4rhke","name":"雜支","c":"teal"},{"id":"mw65dm9g5dmd4","name":"其他","c":"sage"}],"members":[{"id":"mw65dm9g6vscl","name":"Brice","c":"steel"},{"id":"mw65dm9g74rwp","name":"Ivan","c":"sage"},{"id":"mw65dm9g82dsi","name":"Conor","c":"ochre"},{"id":"mw65dm9g9tptf","name":"Janny","c":"plum"},{"id":"mw6ih7wp3uq9xl","name":"AIDEN","c":"plum"}],"claimMode":"share","defClaim":2,"pw":{"salt":"mw79qno4xpqpwmw79qno5y4e6o","hash":"acef61f191a68f727ac21eba7c6f5d6a83d327916a2bc4ef506b21a5e122367d"},"ui":{"colGroups":[{"id":"g-d","name":"金額","cols":["amt","unit","reb","qty"],"collapsed":false,"c":"steel"},{"id":"g-c","name":"換算","cols":["cur","base"],"collapsed":false,"c":"teal"},{"id":"g-r","name":"報支","cols":["claim","payer"],"collapsed":false,"c":"sage"},{"id":"g-m","name":"👤","cols":["@m"],"collapsed":false,"lock":true,"c":"plum"}],"sumState":{"f:mw65dm9gaqpn2":false},"_h1":1,"fx":{"data":{"m":"cat","c":"st"},"sum":{"m":"year","c":"status"}},"lbl":{"blk.tl":"EVENT","col.cat":"CATE","tab.data":"DATA","tab.set":"⚙","tab.sum":"SUMMARY"},"blk":{"tdet":true,"today":false,"tl":false,"gantt":false},"_i1":1,"fxo":{},"sidePin":false,"kpiC":[],"kpiH":{},"colOrder":["ck","date","cat","desc","amt","unit","reb","qty","base","cur","claim","payer","@m","tags","remark"],"tbAll":true,"logoI":"chart","logoS":"line","logoC":"steel","sideW":307},"statuses":[{"id":"plan","name":"規劃中","c":"steel"},{"id":"go","name":"進行中","c":"teal"},{"id":"todo","name":"待報支","c":"ochre"},{"id":"sent","name":"已送出","c":"plum"},{"id":"paid","name":"已入帳","c":"sage"}],"claims":[{"id":2,"name":"報支","icon":"●","kind":"claim","c":"sage"},{"id":0,"name":"自費","icon":"○","kind":"self","c":"slate"},{"id":1,"name":"缺據","icon":"◔","kind":"miss","c":"ochre"}]},"trips":[{"collapsed":false,"name":"COSTCO","id":"mw65dm9gaqpn2","kind":"folder","depth":0},{"id":"mw7ezapr1pcotj","kind":"trip","name":"COSTCO","depth":1,"collapsed":false,"start":"2026-10-02","end":"2026-10-02","place":"","purpose":"","status":"plan","members":["mw65dm9g6vscl","mw65dm9g74rwp","mw65dm9g82dsi","mw65dm9g9tptf"],"perDiem":0,"rates":{},"note":"","rows":[{"id":"mw7f2w5414lvj2","depth":0,"collapsed":false,"date":"2026-10-02","cat":"","desc":"COSTCO","unit":null,"reb":null,"qty":1,"cur":"","claim":2,"payer":"","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1,"mw65dm9g82dsi":1,"mw65dm9g9tptf":1},"tags":[],"remark":"","ok":false,"sig":""},{"id":"mw7fxulqgw6yq","depth":0,"collapsed":false,"date":"2026-10-02","cat":"","desc":"項目名稱\t數量\t金額 (新台幣) 秘魯藍莓\t1\t299 \t\t 亞細亞智利草莓\t1\t319 \t\t 冷凍去頭白蝦\t1\t599 \t\t LAY'S原味洋芋片\t1\t175 \t\t ***COUPON #225718回饋金\t1\t-35 \t\t DHA魚油晶球膠囊\t1\t599","unit":null,"reb":null,"qty":1,"cur":"","claim":2,"payer":"","w":{"mw65dm9g6vscl":1,"mw65dm9g74rwp":1,"mw65dm9g82dsi":1,"mw65dm9g9tptf":1},"tags":[],"remark":"","ok":false,"sig":""}],"wd":1,"auto":"end"}]}</script>
 <script>
 'use strict';
 const PRISTINE='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
@@ -2605,7 +2587,7 @@ const _raL=renderAll;renderAll=function(){syncStatus();return _raL.apply(this,ar
 const _psL=paintStatic;paintStatic=function(){syncStatus();return _psL.apply(this,arguments)};
 
 /* ===== M: versions / status flow / views / issues / settle / claim report / ⋯ menu ===== */
-const BUILD=1794118291571;
+const BUILD=1794108943129;
 const todayISO=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const fdt=ts=>{const d=new Date(ts),p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())};
 /* ---------- 1. old-code tab guard ---------- */
@@ -3138,160 +3120,6 @@ const _psR=paintSave;paintSave=function(){_psR.apply(this,arguments);const c=GH.
   const sv=$('#sv');if(sv&&GH.ok(c)&&c.mode!=='local'&&fileDirty)sv.dataset.tip='變更暫存在這個瀏覽器；按 Ctrl+S 存到'+(c.mode==='online'?'線上':'線上和本機')};
 {const _miR=moreItems;moreItems=function(){const a=_miR();a.push(['☁ 線上儲存設定（GitHub）…',ghDlg]);return a}}
 paintSave();
-
-/* ===== S1: locked → faint hint chip instead of a password dialog ===== */
-const _auS=askUnlock;let lkT=0;
-function lkHide(){const h=$('#lkHint');if(h)h.classList.remove('on')}
-function lkArm(ms){clearTimeout(lkT);lkT=setTimeout(lkHide,ms)}
-askUnlock=function(cb){
-  if(!db.settings.pw||unlocked){if(cb)cb();return}
-  if(dlgs.some(d=>d.o.unlock))return;
-  if(editing)cancelEdit();
-  let h=$('#lkHint');
-  if(!h){h=document.createElement('button');h.type='button';h.id='lkHint';h.className='lkhint';h.setAttribute('aria-live','polite');document.body.appendChild(h);
-    h.addEventListener('click',()=>{const f=h._cb;lkHide();_auS(f)});
-    h.addEventListener('mouseenter',()=>clearTimeout(lkT));h.addEventListener('mouseleave',()=>lkArm(2000));
-    h.addEventListener('auxclick',e=>{if(e.button===1){e.preventDefault();h.click()}})}
-  h._cb=cb;h.innerHTML='<span aria-hidden="true">🔒</span> 唯讀中・<u>點這裡輸入密碼</u>就能修改';
-  h.classList.add('on');lkArm(4000)};
-/* explicit unlock buttons still open the password box directly */
-document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#lockb,#setUl');if(!b)return;
-  if(!db.settings.pw||unlocked||b.id==='lockb'&&!db.settings.pw)return;
-  e.stopImmediatePropagation();e.preventDefault();lkHide();
-  _auS(b.id==='setUl'?()=>{const host=$('#v-set');if(host)host.innerHTML='';renderAll()}:null)},true);
-
-/* ===== S2: paste a column / table into the cell you clicked ===== */
-const FILLK=k=>/^(unit|reb|qty|amt|date|remark|tags)$/.test(k)||k.startsWith('w:');
-const CELLK=k=>k==='desc'||FILLK(k)||/^(cat|cur|claim|payer)$/.test(k);
-const KNAME=k=>{const f=mapFields().find(x=>x[0]===k);return f?f[1]:k};
-/* turn pasted text from mapped key into a value setField understands */
-function cellVal(t,k,v){v=String(v??'').trim();const S0=db.settings;
-  switch(k){
-    case 'cat':{if(!v)return '';const c=S0.categories.find(x=>x.name.toLowerCase()===v.toLowerCase()||x.id===v);return c?c.id:undefined}
-    case 'cur':{if(!v)return '';const c=v.toUpperCase();if(c===S0.base)return '';return S0.currencies.some(x=>x.code===c)?c:undefined}
-    case 'payer':{if(!v)return '';const m=S0.members.find(x=>x.name.toLowerCase()===v.toLowerCase());return m&&t.members.includes(m.id)?m.id:undefined}
-    case 'claim':{const L=(typeof clList==='function'?clList():[]).find(x=>x.name===v||x.icon+' '+x.name===v);const c=L?L.id:parseClaim(v);return c==null?undefined:String(c)}
-  }
-  if(/^(unit|reb|qty|amt)$/.test(k)||k.startsWith('w:')){if(!v)return null;return parseNum(v)==null?undefined:v}
-  return v}
-const leafTargets=(t,id)=>{const a=t.rows,i=VIS.indexOf(id);if(i<0)return[];
-  return VIS.slice(i).map(x=>a[TR.idx(a,x)]).filter(r=>r&&!TR.has(a,TR.idx(a,r.id)))};
-/* recs: [{key:value}] — fill from the start row downward; ask when rows run out */
-function fillDown(t,startId,recs,what){
-  const tg=leafTargets(t,startId),N=recs.length,M=tg.length;
-  const run=extra=>{let set=0,bad=0,add=0;const ids=[];
-    const ok=act(()=>{const a=t.rows,L=tg.slice(0,extra?N:Math.min(N,M));
-      if(extra&&N>M){const last=tg[M-1]||a[TR.idx(a,startId)],li=TR.idx(a,last.id);let pos=TR.end(a,li);
-        for(let i=M;i<N;i++){const r=newRow(t,{});r.depth=last.depth;if(last.date)r.date=last.date;a.splice(pos++,0,r);L.push(r);add++}}
-      L.forEach((r,i)=>{ids.push(r.id);Object.entries(recs[i]).forEach(([k,v])=>{const x=cellVal(t,k,v);if(x===null)return;if(x===undefined){bad++;return}
-        if(setField(t,r,k,x))set++;else bad++})});
-      TR.norm(a);G.sel=new Set(ids);G.focus=ids[0];G.anchor=ids[0]});
-    if(ok)toast('已貼上 '+Math.min(N,ids.length)+' 列的「'+what+'」'+(add?'，新增 '+add+' 列':'')+(bad?'，'+bad+' 格看不懂已略過':'')+'（右鍵／Ctrl+Z 可回覆）');
-    else if(canEdit())toast('內容相同，沒有變更')};
-  if(!M){toast('這一列是群組列，請點一般明細列再貼上');return}
-  if(N<=M){run(false);return}
-  dlg({title:'⚠ 下方列數不夠',body:'<p>要貼上 <b>'+N+'</b> 筆「'+esc(what)+'」，但從這一列往下只有 <b>'+M+'</b> 列可以填（群組列與篩掉的列不算）。</p><p class="mute">可以只貼前 '+M+' 筆，或在最後面新增 '+(N-M)+' 列再一起貼上。</p>',
-    focusBtn:2,btns:[{t:'取消'},{t:'只貼前 '+M+' 筆',fn:()=>run(false)},{t:'新增 '+(N-M)+' 列並貼上',pri:1,fn:()=>run(true)}]})}
-/* Description: N lines → N rows (the clicked row takes the first line when it is empty) */
-function pasteDescRows(t,id,lines){
-  const a0=t.rows,r0=a0[TR.idx(a0,id)];if(!r0)return;const ids=[];
-  const parse=s=>{const m=s.match(/^[　 \t]+/);let d=0;if(m){const z=m[0];d=(z.match(/　/g)||[]).length+Math.floor((z.match(/[ \t]/g)||[]).length/2)}
-    return{d,tx:s.trim().replace(/^[└├─•·\-–]+\s*/,'')}};
-  const L=lines.map(parse).filter(x=>x.tx);if(!L.length)return;
-  const ok=act(()=>{const a=t.rows,ci=TR.idx(a,id),r=a[ci];let pos=TR.end(a,ci),k=0;
-    if(!String(r.desc||'').trim()){r.desc=L[0].tx;ids.push(r.id);k=1;pos=ci+1}
-    for(;k<L.length;k++){const x=newRow(t,{desc:L[k].tx});x.depth=r.depth+L[k].d;if(r.date)x.date=r.date;a.splice(pos++,0,x);ids.push(x.id)}
-    TR.norm(a);G.sel=new Set(ids);G.focus=ids[ids.length-1];G.anchor=ids[0];curKey='desc'});
-  if(ok)toast('已貼上 '+L.length+' 項，'+(ids[0]===id?'第一項填入目前列、':'')+'新增 '+(ids[0]===id?L.length-1:L.length)+' 列（右鍵／Ctrl+Z 可回覆）')}
-function pasteGrid(txt){txt=String(txt).replace(/\r\n?/g,'\n').replace(/\n+$/,'');
-  let g=txt.includes('\t')?parseDSV(txt,'\t'):txt.split('\n').map(x=>[x]);
-  g=g.map(r=>{r=r.slice();while(r.length>1&&!String(r[r.length-1]).trim())r.pop();return r});
-  while(g.length&&!g[g.length-1].some(x=>String(x).trim()))g.pop();
-  const w=Math.max(0,...g.map(r=>r.length));g.forEach(r=>{while(r.length<w)r.push('')});return g}
-let mapFrom=null;
-document.addEventListener('paste',e=>{
-  if(dlgOpen()||tab!=='data')return;const t=trip();if(!t||t.kind!=='trip')return;
-  const tg=e.target;let id,k;
-  if(editing&&tg===editing.el){id=editing.id;k=editing.k}
-  else if(!editing&&!(tg.closest&&tg.closest('input,textarea,select,[contenteditable=true]'))&&G.focus&&VIS.includes(G.focus)){id=G.focus;k=curKey}
-  else return;
-  if(!k||!CELLK(k))return;
-  const cd=e.clipboardData;if(!cd||[...(cd.items||[])].some(i=>i.kind==='file'))return;
-  const txt=cd.getData('text/plain');if(!txt||!txt.trim()||TQ.parse(txt))return;
-  const g=pasteGrid(txt);if(!g.length)return;const multiRow=g.length>1,multiCol=g[0].length>1;
-  if(editing&&!multiRow&&!multiCol)return;           /* a plain value typed into the box */
-  e.preventDefault();e.stopImmediatePropagation();
-  if(!canEdit()){askUnlock();return}
-  if(editing)cancelEdit();
-  if(multiCol){mapFrom={id,k};openMap(g,'貼上到「'+KNAME(k)+'」欄');return}
-  const vals=g.map(r=>r[0]);
-  if(k==='desc'){pasteDescRows(t,id,vals);return}
-  fillDown(t,id,vals.map(v=>({[k]:v})),KNAME(k))},true);
-/* field-mapping dialog opened from a cell: line the columns up from that cell and offer "overwrite downward" */
-const _omS=openMap;
-openMap=function(g,src){const mf=mapFrom;mapFrom=null;_omS.apply(this,arguments);if(!mf)return;
-  const el=$$('.dlg').pop();if(!el)return;const mi=$('#mi',el);if(!mi)return;
-  mi.insertAdjacentHTML('beforeend','<option value="over">從目前列往下覆寫（不新增列）</option>');
-  const hdr=$('#mh',el)&&$('#mh',el).checked,F=new Set(mapFields().map(x=>x[0]));
-  if(mf.k!=='desc'&&mf.k!=='date'){mi.value='over';
-    if(!hdr){const ks=NAVK.slice(NAVK.indexOf(mf.k)).filter(x=>F.has(x)&&x);
-      $$('[data-mc]',el).forEach((s,i)=>{s.value=ks[i]||'';s.dispatchEvent(new Event('change',{bubbles:true}))})}}
-  else if(mi.querySelector('[value=after]'))mi.value='after'};
-let tSup=0;const _toS=toast;toast=function(m){if(Date.now()<tSup&&/^已匯入/.test(m))return;return _toS.apply(this,arguments)};
-const _imS=insertMapped;
-insertMapped=function(rows,map,mode){if(mode!=='over')return _imS.apply(this,arguments);
-  const t=trip();if(!t||!G.focus)return 0;
-  const recs=rows.map(r=>{const o={};map.forEach((k,i)=>{if(k&&k!=='depth'&&String(r[i]??'').trim()!=='')o[k]=r[i]});return o}).filter(o=>Object.keys(o).length);
-  if(!recs.length)return 0;const what=[...new Set(map.filter(Boolean))].map(KNAME).join('、');
-  tSup=Date.now()+300;const id=G.focus;setTimeout(()=>fillDown(t,id,recs,what),0);return recs.length};
-
-/* ===== S3: toolbar — one ICON opens a tray with every button; drag (or pick) which ones stay on the bar ===== */
-const TRAYSVG='<svg class="ic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><path d="M16.75 14v5.5M14 16.75h5.5"/></svg>';
-const tbHide=()=>{const u=db.settings.ui;if(!Array.isArray(u.tbHide))u.tbHide=u.tbAll?[]:TBMORE.slice();return u.tbHide};
-let trayOpen=false,trayPick=false;
-const _rtS=renderToolbar;
-renderToolbar=function(t){_rtS.apply(this,arguments);const bar=$('#tbar .tbi');if(!bar)return;
-  const H=tbHide();bar.querySelectorAll('.tbh').forEach(x=>x.classList.remove('tbh'));
-  const mb=$('#moreB',bar);
-  bar.insertAdjacentHTML('beforeend','<button class="btn tbb'+(trayOpen?' on':'')+'" id="trayB" aria-label="所有按鈕" aria-expanded="'+trayOpen+'" data-tip="所有按鈕：點一下在下方展開全部 ICON。\n把 ICON 拖到工具列＝固定顯示；拖回下方＝收起">'+TRAYSVG+(H.length?'<span class="trn">'+H.length+'</span>':'')+'</button>');
-  if(mb)bar.appendChild(mb);
-  const hidden=TBK.filter(k=>H.includes(k)).map(k=>bar.querySelector('[data-oi="'+k+'"]')).filter(Boolean);
-  if(!trayOpen){hidden.forEach(b=>b.classList.add('tbh'));return}
-  const tr=document.createElement('div');tr.id='tbTray';tr.className='tbtray'+(trayPick?' pick':'');
-  tr.innerHTML='<div class="trh"><span class="mute small">'+(trayPick?'點 ICON 切換：<b>📌</b> 固定在工具列 ／ 其餘收在這裡':'拖曳 ICON 到上方工具列＝固定顯示；把工具列上的 ICON 拖到這裡＝收起')+'</span><span class="sp"></span>'+
-    '<button class="btn ghost small" id="trayPick" aria-pressed="'+trayPick+'">'+(trayPick?'✓ 完成':'📌 選擇要顯示的')+'</button>'+
-    '<button class="btn ghost small" id="trayReset" data-tip="恢復預設：圖片辨識／複製／刪除／匯出收在這裡">預設</button></div><div class="tri"></div>';
-  bar.after(tr);const box=$('.tri',tr);
-  if(trayPick){TBK.forEach(k=>{const b=bar.querySelector('[data-oi="'+k+'"]');if(!b)return;b.classList.toggle('pin',!H.includes(k));box.appendChild(b)})}
-  else{hidden.forEach(b=>box.appendChild(b));if(!hidden.length)box.innerHTML='<span class="mute small">全部 ICON 都已顯示在工具列；把不常用的拖到這裡收起</span>'}
-  $$('[data-oi]',bar).concat($$('[data-oi]',box)).forEach(b=>{if(TBK.includes(b.dataset.oi))b.draggable=!trayPick})};
-function traySet(k,show,beforeK){const u=db.settings.ui,H=tbHide();
-  const i=H.indexOf(k);if(show&&i>=0)H.splice(i,1);if(!show&&i<0)H.push(k);
-  if(show&&beforeK!==undefined){const o=ordOf(u.tbo,TBK).filter(x=>x!==k);let p=beforeK?o.indexOf(beforeK):o.length;if(p<0)p=o.length;o.splice(p,0,k);u.tbo=o}
-  u.tbAll=!H.length;saveView();renderMain()}
-$('#tbar').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
-  if(b.id==='trayB'){e.stopPropagation();trayOpen=!trayOpen;if(!trayOpen)trayPick=false;renderMain();return}
-  if(b.id==='trayPick'){trayPick=!trayPick;renderMain();return}
-  if(b.id==='trayReset'){db.settings.ui.tbHide=TBMORE.slice();db.settings.ui.tbAll=false;saveView();renderMain();toast('已恢復預設的按鈕顯示');return}
-  if(trayPick&&b.closest('#tbTray .tri')&&b.dataset.oi){e.stopImmediatePropagation();e.preventDefault();const k=b.dataset.oi;traySet(k,tbHide().includes(k));return}},true);
-$('#tbar').addEventListener('mousedown',e=>{if(trayPick&&e.target.closest('#tbTray .tri label[data-oi]')){e.preventDefault();const k=e.target.closest('[data-oi]').dataset.oi;traySet(k,tbHide().includes(k))}});
-/* native drag between the bar and the tray */
-let trDrag=null;
-$('#tbar').addEventListener('dragstart',e=>{const b=e.target.closest&&e.target.closest('[data-oi]');if(!b||!TBK.includes(b.dataset.oi)){return}
-  trDrag=b.dataset.oi;e.dataTransfer.effectAllowed='move';try{e.dataTransfer.setData('text/plain','')}catch(x){}b.classList.add('odg')});
-$('#tbar').addEventListener('dragend',()=>{trDrag=null;$$('#tbar .odg,#tbar .odb,#tbar .oda,#tbar .drop').forEach(x=>x.classList.remove('odg','odb','oda','drop'))});
-const trZone=e=>{const tr=e.target.closest&&e.target.closest('#tbTray');if(tr)return{z:'tray',el:tr};const bar=e.target.closest&&e.target.closest('#tbar .tbi');return bar?{z:'bar',el:bar}:null};
-$('#tbar').addEventListener('dragover',e=>{if(!trDrag)return;const z=trZone(e);if(!z)return;e.preventDefault();e.dataTransfer.dropEffect='move';
-  $$('#tbar .odb,#tbar .oda,#tbar .drop').forEach(x=>x.classList.remove('odb','oda','drop'));
-  if(z.z==='tray'){z.el.classList.add('drop');return}
-  const it=e.target.closest('[data-oi]');if(it&&it.dataset.oi!==trDrag&&TBK.includes(it.dataset.oi)){const r=it.getBoundingClientRect();it.classList.add(e.clientX>r.left+r.width/2?'oda':'odb')}});
-$('#tbar').addEventListener('drop',e=>{if(!trDrag)return;const z=trZone(e);if(!z)return;e.preventDefault();const k=trDrag;trDrag=null;
-  if(z.z==='tray'){if(tbHide().includes(k))return;traySet(k,false);toast('已收起「'+LB('tb.'+k,k)+'」，按 ▦ 可再打開');return}
-  const it=e.target.closest('[data-oi]');let before=null;
-  if(it&&TBK.includes(it.dataset.oi)&&it.dataset.oi!==k){const r=it.getBoundingClientRect();
-    if(e.clientX>r.left+r.width/2){const o=ordOf(db.settings.ui.tbo,TBK).filter(x=>x!==k);before=o[o.indexOf(it.dataset.oi)+1]||null}else before=it.dataset.oi}
-  traySet(k,true,before)});
-{const _miS=moreItems;moreItems=function(){return _miS().filter(x=>!/所有按鈕都顯示在工具列/.test(x[0]))}}
 /* ---------- xlsx writer (stored ZIP, no fills) ---------- */
 const CRC=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
 const crc32=b=>{let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=CRC[(c^b[i])&255]^(c>>>8);return(c^0xFFFFFFFF)>>>0};
@@ -3513,6 +3341,4 @@ window.addEventListener('beforeunload',e=>{if(fileDirty){e.preventDefault();e.re
   if(db.settings.pw&&!unlocked&&!ssGet(akey())){ssSet(akey(),'1');askUnlock()}
   if(loadMsg)toast(loadMsg);
 })();
-</script>
-</body>
-</html>
+</script></body></html>
