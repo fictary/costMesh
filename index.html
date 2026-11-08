@@ -498,6 +498,17 @@ header.top .tab[aria-selected=true]{border-color:var(--line2);background:var(--b
 .dlg .bd{min-width:0}
 .mapt{max-width:100%}
 #tripbar .ibtn{padding:3px 5px;line-height:0;display:inline-flex;align-items:center;color:var(--mute)}#tripbar .ibtn:hover{color:var(--acc)}.tqopt p{margin:0 0 8px}.tqopt input{margin-left:4px}
+/* ---- R ---- */
+#grid tr.r:not(.has)>td.ma,#grid tr.r:not(.has)>td.ma *{color:var(--mute)}
+.svb{padding:3px 5px;line-height:0;display:inline-flex;align-items:center;color:var(--mute)}
+.svb:hover{color:var(--acc)}
+#svOn.set{color:var(--steel,var(--acc))}
+#svOn.busy{opacity:.55;pointer-events:none}
+#svOn.busy svg{animation:svp 1s ease-in-out infinite}
+@keyframes svp{50%{transform:translateY(-2px)}}
+.ghg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px}
+.ghol{margin:6px 0;padding-left:20px;line-height:1.6}
+@media (max-width:640px){.ghg{grid-template-columns:minmax(0,1fr)}}
 @media print{.toolbar,.hint,aside.side,.tabs,header.top .btn,.batch{display:none!important}}
 </style>
 </head>
@@ -2577,7 +2588,7 @@ const _raL=renderAll;renderAll=function(){syncStatus();return _raL.apply(this,ar
 const _psL=paintStatic;paintStatic=function(){syncStatus();return _psL.apply(this,arguments)};
 
 /* ===== M: versions / status flow / views / issues / settle / claim report / ⋯ menu ===== */
-const BUILD=1794104912114;
+const BUILD=1794108943129;
 const todayISO=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const fdt=ts=>{const d=new Date(ts),p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())};
 /* ---------- 1. old-code tab guard ---------- */
@@ -3029,6 +3040,87 @@ const _rtbQ=renderTripbar;renderTripbar=function(t){_rtbQ.apply(this,arguments);
   b.setAttribute('data-tip','複製整筆出差（含明細）到剪貼簿。\n到另一份差旅紀錄按 Ctrl+V 貼上；那邊已有同一趟會整筆覆蓋，沒有就新增。\n不同電腦可先貼到 Teams／郵件再複製過去');
   b.innerHTML=CPSVG;b.addEventListener('click',copyTripClip);sp.after(b)};
 {const _miQ=moreItems;moreItems=function(){const a=_miQ();if(trip()&&trip().kind==='trip')a.splice(0,0,['📋 複製整筆出差（貼到另一份檔案）',copyTripClip]);return a}}
+
+/* ===== R: online save (GitHub contents API) + local save ===== */
+const GH={key:()=>'gh:'+db.appId,
+  get(){try{return JSON.parse(localStorage.getItem(GH.key())||'null')}catch(e){return null}},
+  set(o){try{if(o)localStorage.setItem(GH.key(),JSON.stringify(o));else localStorage.removeItem(GH.key())}catch(e){}},
+  ok:c=>!!(c&&c.owner&&c.repo&&c.path&&c.token),
+  api:(c,p)=>'https://api.github.com/repos/'+encodeURIComponent(c.owner)+'/'+encodeURIComponent(c.repo)+(p||''),
+  cpath:c=>'/contents/'+c.path.replace(/^\/+/,'').split('/').map(encodeURIComponent).join('/'),
+  pages:c=>'https://'+c.owner.toLowerCase()+'.github.io/'+c.repo+'/'+c.path.replace(/^\/+/,''),
+  async req(c,url,method,body){const r=await fetch(url,{method:method||'GET',cache:'no-store',headers:{Authorization:'Bearer '+c.token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},body:body?JSON.stringify(body):undefined});
+    let j=null;try{j=await r.json()}catch(e){}return{st:r.status,j}},
+  b64(s){const b=new TextEncoder().encode(s);let o='';for(let i=0;i<b.length;i+=0x8000)o+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(o)},
+  err:x=>x.st===0?'連不上 GitHub（'+((x.j&&x.j.message)||'網路錯誤')+'）':x.st===401?'權杖無效或已過期':x.st===403?'權杖沒有這個 repo 的寫入權限（Contents 要設 Read and write）':x.st===404?'找不到 repo 或分支；私人 repo 也會顯示這個，請確認權杖有選到它':x.st===409?'線上檔案剛被改過，請再存一次':x.st===422?'GitHub 拒絕：'+((x.j&&x.j.message)||''):'GitHub 回應 '+x.st+((x.j&&x.j.message)?'：'+x.j.message:'')
+};
+let ghBusy=false;
+async function saveOnline(){const c=GH.get();if(!GH.ok(c)){ghDlg();return false}
+  if(ghBusy)return false;ghBusy=true;paintSave();
+  try{
+    const br=c.branch||'main',u=GH.api(c,GH.cpath(c));
+    const cur=await GH.req(c,u+'?ref='+encodeURIComponent(br)).catch(e=>({st:0,j:{message:e.message}}));
+    let sha=null;
+    if(cur.st===200&&cur.j){sha=cur.j.sha;
+      if(c.sha&&c.sha!==sha){const ans=await xpAsk({title:'⚠ 線上檔案被別人更新過',
+          body:'<p>「'+esc(c.owner+'/'+c.repo+'/'+c.path)+'」在你上次線上儲存（'+fdt(c.at)+'）之後被改過。</p><p class="mute">直接覆蓋會蓋掉別人的修改。可以先開線上版本，用「複製整筆出差」把需要的內容貼回這份再存。</p>',
+          btns:[{t:'取消',v:'x'},{t:'開啟線上版本',v:'o'},{t:'直接覆蓋',warn:1,v:'w'}]});
+        if(ans==='o')window.open(GH.pages(c),'_blank');if(ans!=='w')return false}}
+    else if(cur.st!==404){toast('☁ 線上儲存失敗：'+GH.err(cur));return false}
+    toast('☁ 上傳到 GitHub…');
+    const body={message:'更新 '+(db.settings.title||'差旅紀錄')+'（'+new Date().toLocaleString('zh-TW',{hour12:false})+'）',content:GH.b64(buildHtml(db)),branch:br};if(sha)body.sha=sha;
+    const put=await GH.req(c,u,'PUT',body).catch(e=>({st:0,j:{message:e.message}}));
+    if(put.st!==200&&put.st!==201){toast('☁ 線上儲存失敗：'+GH.err(put));return false}
+    c.sha=put.j&&put.j.content&&put.j.content.sha;c.at=Date.now();GH.set(c);
+    fileDirty=false;saveLocal();toast('☁ 已存到 GitHub：'+c.repo+'/'+c.path+'。GitHub Pages 約 1–3 分鐘後更新');return true}
+  finally{ghBusy=false;paintSave()}}
+const _sfR=saveFile;
+function saveLocalFile(as){return _sfR(as)}
+saveFile=async function(as){const c=GH.get();
+  if(as||!GH.ok(c)||c.mode==='local')return _sfR(as);
+  if(c.mode==='online')return saveOnline();
+  await _sfR(false);return saveOnline()};
+function ghDlg(){const c=GH.get()||{},v=(k,d)=>esc(c[k]||d||'');
+  const read=el=>({owner:$('#gho',el).value.trim(),repo:$('#ghr',el).value.trim(),branch:$('#ghb',el).value.trim()||'main',path:$('#ghp',el).value.trim().replace(/^\/+/,''),token:$('#ght',el).value.trim(),mode:$('#ghm',el).value});
+  const msg=(el,t,bad)=>{const m=$('#ghmsg',el);m.textContent=t;m.className='small '+(bad?'err':'mute')};
+  dlg({title:'☁ 線上儲存（GitHub）',
+    body:'<p class="mute">存檔時直接把這份 HTML 上傳到你的 GitHub repo；repo 開了 GitHub Pages，其他人用網址就能看到最新版。</p>'+
+      '<div class="ghg"><label class="frm">帳號／組織（owner）<input class="f" id="gho" value="'+v('owner')+'" placeholder="例如 brice-lin"></label>'+
+      '<label class="frm">Repo 名稱<input class="f" id="ghr" value="'+v('repo')+'" placeholder="例如 travel-cost"></label>'+
+      '<label class="frm">分支<input class="f" id="ghb" value="'+v('branch','main')+'"></label>'+
+      '<label class="frm">檔案路徑<input class="f" id="ghp" value="'+v('path',fileName())+'" placeholder="例如 index.html 或 cost/差旅紀錄.html"></label></div>'+
+      '<label class="frm">存取權杖（fine-grained token）<input class="f" id="ght" type="password" autocomplete="off" value="'+v('token')+'" placeholder="github_pat_…"></label>'+
+      '<label class="frm">Ctrl+S 存檔時<select class="f" id="ghm">'+[['both','線上＋本機都存'],['online','只存線上'],['local','只存本機（線上要按 ☁）']].map(([k,n])=>'<option value="'+k+'"'+((c.mode||'both')===k?' selected':'')+'>'+n+'</option>').join('')+'</select></label>'+
+      '<div id="ghmsg" class="small mute"></div>'+
+      '<details class="small"><summary>第一次怎麼設定</summary><ol class="ghol">'+
+      '<li>在 GitHub 建一個 repo，Settings → Pages → Deploy from a branch，選 <b>main</b>／<b>(root)</b>。</li>'+
+      '<li>到 <b>Settings → Developer settings → Fine-grained tokens</b> 建權杖：Repository access 只選這個 repo，Permissions → <b>Contents：Read and write</b>。</li>'+
+      '<li>把權杖貼到上面，按「測試連線」，再按「儲存設定」。</li></ol>'+
+      '<p class="mute">權杖只存在這台電腦的這個瀏覽器，不會寫進 HTML 檔，也不會跟著檔案分享出去。公開 repo 的內容（含金額、人名）任何人知道網址都看得到；私人 repo 的 Pages 需要付費方案。</p>'+
+      (GH.ok(c)?'<p>線上網址：<a href="'+esc(GH.pages(c))+'" target="_blank" rel="noopener">'+esc(GH.pages(c))+'</a>'+(c.at?'<br>上次線上儲存：'+fdt(c.at):'')+'</p>':'')+'</details>',
+    btns:[...(GH.ok(c)?[{t:'清除設定',warn:1,fn:()=>{GH.set(null);paintSave();toast('已清除線上儲存設定（權杖已從這個瀏覽器刪除）')}}]:[]),{t:'取消'},
+      {t:'測試連線',fn:async el=>{const o=read(el);if(!o.owner||!o.repo||!o.token){msg(el,'請填帳號、Repo 和權杖',1);return false}
+        msg(el,'連線中…');const r=await GH.req(o,GH.api(o)).catch(e=>({st:0,j:{message:e.message}}));
+        if(r.st!==200){msg(el,'✗ '+GH.err(r),1);return false}
+        const p=r.j.permissions||{};if(!p.push){msg(el,'✗ 權杖看得到 repo，但沒有寫入權限（Contents 要設 Read and write）',1);return false}
+        msg(el,'✓ 連線成功：'+r.j.full_name+(r.j.private?'（私人）':'（公開，任何人可看）')+'，可以寫入');return false}},
+      {t:'儲存設定',pri:1,fn:el=>{const o=read(el);if(!o.owner||!o.repo||!o.path||!o.token){msg(el,'帳號、Repo、檔案路徑、權杖都要填',1);return false}
+        const old=GH.get()||{};if(old.owner===o.owner&&old.repo===o.repo&&old.path===o.path&&old.branch===o.branch){o.sha=old.sha;o.at=old.at}
+        GH.set(o);paintSave();toast('已儲存線上設定。按 ☁ 或 Ctrl+S 就會存到 GitHub')}}]});
+}
+/* header: two save buttons next to the status */
+{const sv=$('#sv');if(sv){const SV='width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
+  sv.insertAdjacentHTML('afterend','<button class="btn ghost ibtn svb" id="svOn" type="button" aria-label="線上儲存"><svg '+SV+'><path d="M7 18.5h10.5a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.6 9.1 4.75 4.75 0 0 0 7 18.5z"/><path d="M12 15.5v-5M9.75 12.5 12 10.25l2.25 2.25"/></svg></button>'+
+    '<button class="btn ghost ibtn svb" id="svLo" type="button" aria-label="本機儲存"><svg '+SV+'><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2.5 19h19M12 8v5M9.75 10.75 12 13l2.25-2.25"/></svg></button>');
+  $('#svOn').addEventListener('click',e=>{if(e.shiftKey||!GH.ok(GH.get()))ghDlg();else saveOnline()});
+  $('#svLo').addEventListener('click',e=>saveLocalFile(e.shiftKey))}}
+const _psR=paintSave;paintSave=function(){_psR.apply(this,arguments);const c=GH.get(),on=$('#svOn'),lo=$('#svLo');if(!on)return;
+  on.classList.toggle('busy',ghBusy);on.classList.toggle('set',GH.ok(c));
+  on.dataset.tip=GH.ok(c)?'線上儲存（GitHub）：'+c.owner+'/'+c.repo+'/'+c.path+'\n'+(c.at?'上次：'+fdt(c.at):'還沒存過')+'\n網址：'+GH.pages(c)+'\nShift+點：修改設定':'線上儲存：還沒設定，點一下設定 GitHub repo';
+  lo.dataset.tip='本機儲存：寫回這台電腦上的 HTML 檔（Shift+點：另存新檔）';
+  const sv=$('#sv');if(sv&&GH.ok(c)&&c.mode!=='local'&&fileDirty)sv.dataset.tip='變更暫存在這個瀏覽器；按 Ctrl+S 存到'+(c.mode==='online'?'線上':'線上和本機')};
+{const _miR=moreItems;moreItems=function(){const a=_miR();a.push(['☁ 線上儲存設定（GitHub）…',ghDlg]);return a}}
+paintSave();
 /* ---------- xlsx writer (stored ZIP, no fills) ---------- */
 const CRC=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
 const crc32=b=>{let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=CRC[(c^b[i])&255]^(c>>>8);return(c^0xFFFFFFFF)>>>0};
